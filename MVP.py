@@ -129,9 +129,7 @@ def main():
     # Graph
     graph_data = blueprint.history(period = '2y',interval = '1d' )
     print(graph_data.head(5))
-    graph_data['index'] = graph_data.index
-
-    col2.line_chart(graph_data, x='index', y='adjclose')
+    col2.line_chart(graph_data['adjclose'])
 
 
     data_2_laden.text('Loading... ready')
