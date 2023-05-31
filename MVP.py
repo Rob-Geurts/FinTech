@@ -126,13 +126,16 @@ def main():
 
     col2.dataframe(compare_df)
 
-    # Graph
-    graph_data = blueprint.history(period = '2y',interval = '1d' )
+    #Graph
+    # Reset the index of the DataFrame
+    graph_data_reset = graph_data.reset_index()
 
-    # Convert the 'adjclose' series into a DataFrame
-    adjclose_df = graph_data[['adjclose']]
+    # Create a new DataFrame with 'date' and 'adjclose' columns
+    adjclose_df = graph_data_reset[['date', 'adjclose']]
+
     # Then pass it to the line_chart method
-    col2.line_chart(adjclose_df)
+    col2.line_chart(adjclose_df.set_index('date'))
+
 
 
     data_2_laden.text('Loading... ready')
