@@ -128,7 +128,7 @@ def main():
 
     # Graph
     graph_data = blueprint.history(period = '2y',interval = '1d' )
-    graph_data['index'] = pd.to_datetime(graph_data.index)
+    graph_data['index'] = pd.to_datetime(graph_data.Date)
 
     col2.line_chart(graph_data, x='index', y='adjclose')
 
