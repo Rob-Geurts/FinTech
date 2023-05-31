@@ -128,8 +128,11 @@ def main():
 
     # Graph
     graph_data = blueprint.history(period = '2y',interval = '1d' )
-    print(graph_data.head(5))
-    col2.line_chart(graph_data['adjclose'])
+
+    # Convert the 'adjclose' series into a DataFrame
+    adjclose_df = graph_data[['adjclose']]
+    # Then pass it to the line_chart method
+    col2.line_chart(adjclose_df)
 
 
     data_2_laden.text('Loading... ready')
