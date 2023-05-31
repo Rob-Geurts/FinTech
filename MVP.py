@@ -138,7 +138,7 @@ def main():
 
     #graph to use in document
     memfile = io.BytesIO()
-    sns.lineplot(data = graph_data.Close)
+    sns.lineplot(data = adjclose_df)
     plt.xticks(rotation=30)
     plt.savefig(memfile)
 
