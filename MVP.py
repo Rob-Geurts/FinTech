@@ -128,6 +128,8 @@ def main():
 
     # Graph
     graph_data = blueprint.history(period = '2y',interval = '1d' )
+    graph_data['index'] = graph_data.index
+   
     col2.line_chart(graph_data.adjclose) #for on the webpage
 
     data_2_laden.text('Loading... ready')
