@@ -101,7 +101,7 @@ def create_doc(companyName, sector, industry, current_price,
     keyword = "Price graph"
     for paragraph in document.paragraphs:
         if keyword in paragraph.text:
-            paragraph.insert_paragraph_before()
+            #paragraph.insert_paragraph_before()
             r = paragraph.add_run()
             r.add_picture(plot)
 
