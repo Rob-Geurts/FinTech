@@ -10,9 +10,7 @@ This tool allows you to analyze stock data and generate reports for different st
 - yahooquery
 - matplotlib
 - seaborn
-- requests
-- numerize
-- Pillow
+
 
 ## Installation
 
