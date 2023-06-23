@@ -161,9 +161,8 @@ def main():
         dividend_df = dividend_df[['dividends']]
         dividend_df.index = dividend_df.index.strftime('%Y-%m-%d')
         dividend_df = dividend_df.sort_values(by='date', ascending=False)
-    else:
-        dividend_df = 'N/A'
-    col3.dataframe(dividend_df)
+        col3.dataframe(dividend_df)
+    
 
     col3.subheader("Short ratios")
     col3.write(shortRatio)
