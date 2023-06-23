@@ -100,11 +100,11 @@ def create_doc(companyName, sector, industry, current_price,
 
     ## add graph
     keyword = "Price graph"
-    for i, paragraph in enumerate(document.paragraphs):
+    for paragraph in enumerate(document.paragraphs):
         if keyword in paragraph.text:
-            # Insert an empty paragraph before the graph
-            document.paragraphs[i].insert_paragraph_before("")
-
+            # Add a new paragraph after the paragraph containing the keyword
+            document.add_paragraph("")
+       
             # Add the graph below the empty paragraph
             r = document.paragraphs[i+1].add_run()
             r.add_picture(plot)
