@@ -132,7 +132,14 @@ def main():
     adjclose_df = graph_data_reset[['date', 'adjclose']] # Create a new DataFrame with 'date' and 'adjclose' columns
     col2.line_chart(adjclose_df.set_index('date')) # Then pass it to the line_chart method
 
-
+    #Analyst recommendations
+    analystdf = blueprint.recommendation_trend
+    analystdf = analystdf.reset_index(0)
+    analystdf = analystdf.iloc[:,1:]
+    analystdf.index.name = ''
+    
+    col2.dataframe(analystdf)
+    
 
     data_2_laden.text('Loading... ready')
 
@@ -164,7 +171,7 @@ def main():
     document = create_doc(companyName, sector, industry, current_price,
                fiftyTwoWeek, targetMeanPrice,
                marketCap, beta, dividendRate, companyInfo,
-               shortRatio, shortPercentage, dividend_df,
+               shortRatio, shortPercentage, dividend_df, analystdf,
                news, compare_df,memfile, author)
 
     file_stream = io.BytesIO()
