@@ -154,12 +154,15 @@ def main():
     # Dividend history
     data_3_laden = col3.text('Loading...')
     dividend_df = blueprint.history(period='2y')
-    dividend_df = dividend_df[dividend_df['dividends']>0]
-    dividend_df.reset_index(inplace=True)
-    dividend_df.set_index(pd.to_datetime(dividend_df['date']), inplace=True, drop=True)
-    dividend_df = dividend_df[['dividends']]
-    dividend_df.index = dividend_df.index.strftime('%Y-%m-%d')
-    dividend_df = dividend_df.sort_values(by='date', ascending=False)
+    if 'dividend' in dividend_df.columns:
+        dividend_df = dividend_df[dividend_df['dividends']>0]
+        dividend_df.reset_index(inplace=True)
+        dividend_df.set_index(pd.to_datetime(dividend_df['date']), inplace=True, drop=True)
+        dividend_df = dividend_df[['dividends']]
+        dividend_df.index = dividend_df.index.strftime('%Y-%m-%d')
+        dividend_df = dividend_df.sort_values(by='date', ascending=False)
+    else:
+        dividend_df = 'N/A'
     col3.dataframe(dividend_df)
 
     col3.subheader("Short ratios")
