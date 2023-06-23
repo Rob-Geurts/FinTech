@@ -61,8 +61,8 @@ def create_doc(companyName, sector, industry, current_price,
             table.cell(i + 1, j).text = str(competitor_df.values[i, j])
 
     # replace new table with old table
-    old_competitor_table = document.tables[1]
-    newTable = document.tables[4]
+    old_competitor_table = document.tables[2]
+    newTable = document.tables[5]
     old_competitor_table._element.getparent().replace(old_competitor_table._element,newTable._element )
 
 
@@ -77,8 +77,8 @@ def create_doc(companyName, sector, industry, current_price,
             table1.cell(i+1, j).text = str(analyst_df.values[i,j])
 
     #replace old table with new table
-    old_analyst_table = document.tables[2]
-    newTable = document.tables[4]
+    old_analyst_table = document.tables[3]
+    newTable = document.tables[5]
     old_analyst_table._element.getparent().replace(old_analyst_table._element, newTable._element)
                    
     ## Dividends table
@@ -93,8 +93,8 @@ def create_doc(companyName, sector, industry, current_price,
         for j in range(dividend_df.shape[-1]):
             table2.cell(i + 1, j).text = str(dividend_df.values[i, j])
     # replace new table with old table
-    old_dividend_table = document.tables[3]
-    newTable = document.tables[4]
+    old_dividend_table = document.tables[4]
+    newTable = document.tables[5]
     old_dividend_table._element.getparent().replace(old_dividend_table._element, newTable._element)
 
     ## add graph
