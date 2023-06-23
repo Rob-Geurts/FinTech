@@ -38,6 +38,8 @@ def create_doc(companyName, sector, industry, current_price,
         for row in table.rows:
             for cell in row.cells:
                 for paragraph in cell.paragraphs:
+                    find_replace("Date:", "Date: " + str(datetime.today().date()), paragraph)
+                    find_replace("Name:", "Name: " + str(author), paragraph)
                     find_replace("Company:", companyName, paragraph )
                     find_replace("Sector:", sector, paragraph)
                     find_replace("Industry:", industry, paragraph)
@@ -47,8 +49,7 @@ def create_doc(companyName, sector, industry, current_price,
                     find_replace("Market cap:", marketCap, paragraph)
                     find_replace("Beta:", beta, paragraph)
                     find_replace("Forward Dividend:", dividendRate, paragraph)
-                    find_replace("Date:", "Date: " + str(datetime.today().date()), paragraph)
-                    find_replace("Name:", "Name: " + str(author), paragraph)
+
 
     # input table for competitor
     competitor_df = competition_df
@@ -102,7 +103,7 @@ def create_doc(companyName, sector, industry, current_price,
     for i, paragraph in enumerate(document.paragraphs):
         if keyword in paragraph.text:
             # Insert an empty paragraph before the graph
-            document.paragraphs[i].insert_paragraph_before()
+            document.paragraphs[i].insert_paragraph_before("")
 
             # Add the graph below the empty paragraph
             r = document.paragraphs[i+1].add_run()
