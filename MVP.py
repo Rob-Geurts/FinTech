@@ -111,6 +111,7 @@ def main():
         compare_df.loc[len(compare_df)] = items
 
 
+
     # Graph of stock for 2 years ( year input by user)
 
     ## Short positions
@@ -154,6 +155,7 @@ def main():
     # Dividend history
     data_3_laden = col3.text('Loading...')
     dividend_df = blueprint.history(period='2y')
+    #Check if company pays out dividends
     if 'dividend' in dividend_df.columns:
         dividend_df = dividend_df[dividend_df['dividends']>0]
         dividend_df.reset_index(inplace=True)
@@ -162,7 +164,9 @@ def main():
         dividend_df.index = dividend_df.index.strftime('%Y-%m-%d')
         dividend_df = dividend_df.sort_values(by='date', ascending=False)
         col3.dataframe(dividend_df)
-    
+    #If there are no dividends, create empty dataframe
+    else:
+        dividend_df = pd.DataFrame()
 
     col3.subheader("Short ratios")
     col3.write(shortRatio)
