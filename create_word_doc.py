@@ -12,7 +12,7 @@ def find_replace(paragraph_keyword, draft_keyword, paragraph):
 def create_doc(companyName, sector, industry, current_price,
                 fiftyTwoWeek, targetMeanPrice,
                marketCap, beta, dividendRate, companyInfo,
-               shortRatio, shortPercentage, dividendHistory,
+               shortRatio, shortPercentage, dividendHistory, analystdf,
                news, competition_df,plot,author):
     document = Document('Empty_koopvoorstel.docx')
 
@@ -62,9 +62,25 @@ def create_doc(companyName, sector, industry, current_price,
 
     # replace new table with old table
     old_competitor_table = document.tables[1]
-    newTable = document.tables[3]
+    newTable = document.tables[4]
     old_competitor_table._element.getparent().replace(old_competitor_table._element,newTable._element )
 
+
+    ## Analyst recommendations table
+    analyst_df = analystdf
+    table1 = document.add_table(analyst_df.shape[0]+1, analyst_df.shape[1])
+    for j in range(analyst_df.shape[-1]):
+        table1.cell(0,j).text = analyst_df.columns[j]
+
+    for i in range(analyst_df.shape[0]):
+        for j in range(analyst_df.shape[-1]):
+            table1.cell(i+1, j).text = str(analyst_df.values[i,j])
+
+    #replace old table with new table
+    old_analyst_table = document.tables[2]
+    newTable = document.tables[4]
+    old_analyst_table._element.getparent().replace(old_analyst_table._element, newTable._element)
+                   
     ## Dividends table
 
     dividend_df = dividendHistory
@@ -77,8 +93,8 @@ def create_doc(companyName, sector, industry, current_price,
         for j in range(dividend_df.shape[-1]):
             table2.cell(i + 1, j).text = str(dividend_df.values[i, j])
     # replace new table with old table
-    old_dividend_table = document.tables[2]
-    newTable = document.tables[3]
+    old_dividend_table = document.tables[3]
+    newTable = document.tables[4]
     old_dividend_table._element.getparent().replace(old_dividend_table._element, newTable._element)
 
     ## add graph
